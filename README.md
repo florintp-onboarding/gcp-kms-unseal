@@ -1,3 +1,5 @@
+![](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/d731afa81d497ca86640250406ce04b09fc9c342/diagram/main_diagram.png)
+
 # Vault Auto-unseal using GCP Cloud KMS
 
 These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
