@@ -33,6 +33,7 @@ SACC - for service account
 ``` shell
 source ../variables-kms-unseal.source
 ```
+
 4. Create a serviceAccount and generate the JSON key. If the Project_ID=hc-6b43a5a31f54432b9a6159440bb then the link for creating the serviceAccount is at [IAM-Admin](https://console.cloud.google.com/iam-admin/serviceaccounts). [Enable IAM API](https://cloud.google.com/iam/docs/granting-changing-revoking-access?hl=en_US)
 ```shell
 
@@ -85,18 +86,29 @@ echo  'crypto_key = "vault-test1"' >> terraform.tfvars
 echo  'keyring_location = "global"' >> terraform.tfvars
 ```
 
-9. Terraform preparation and steps
+9. Create infrastructure using Terraform
+* initialize working directory
 ```shell
 terraform init
+```
+* plan, to see what resources will be create
+```shell
 terraform plan
+```
+* create resources
+```shell
 terraform apply -auto-approve
+```
+* How to connect?
+Use terraform output.
+```shell
+terraform output
 ```
 
 10. [SSH into the compute instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 ```shell
- export instance_id=$(terraform output vault_server_instance_id)
- export zone_name=$(terraform output zone|sed "s/\"//g") ; export node_name=$(terraform output nodename|sed "s/\"//g") ; \
- gcloud -q compute ssh  --zone=${zone_name} ${node_name} --project ${PROJID}
+eval  $(terraform output|egrep '^nodename|^zone'|sed "s/ //g")
+gcloud -q compute ssh  --zone=${zone} ${nodename} --project ${PROJID}
 ```
 
 11.  Check the Vault server status
