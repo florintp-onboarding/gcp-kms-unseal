@@ -17,7 +17,7 @@ In this case, a sourced file, variables-kms-unseal.source, with the correct valu
 gcloud services enable cloudkms.googleapis.com
 
  
-For all commands execute the shell snip (https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/create_and_unseal_vault.sh) having as default the creation of the KMS keyring and unseal key.
+For all commands in one go, execute the shell snip [create_and_unseal_vault.sh](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/create_and_unseal_vault.sh) having as default the creation of the KMS keyring and unseal key.
 
 1. Set this location as your working directory
 ```shell
@@ -33,7 +33,7 @@ SACC - for service account
 ``` shell
 source ../variables-kms-unseal.source
 ```
-4. Create a serviceAccount and generate the JSON key. If the Project_ID=hc-6b43a5a31f54432b9a6159440bb then the link for creating the serviceAccount is at [IAM-Admin] (https://console.cloud.google.com/iam-admin/serviceaccounts). [Enable IAM API] (https://cloud.google.com/iam/docs/granting-changing-revoking-access?hl=en_US)
+4. Create a serviceAccount and generate the JSON key. If the Project_ID=hc-6b43a5a31f54432b9a6159440bb then the link for creating the serviceAccount is at [IAM-Admin](https://console.cloud.google.com/iam-admin/serviceaccounts). [Enable IAM API](https://cloud.google.com/iam/docs/granting-changing-revoking-access?hl=en_US)
 ```shell
 
 gcloud -q iam service-accounts create $SACC \
@@ -78,7 +78,7 @@ cp main.tf_with_key_creation main.tf
 # After keyring already present
 # cp main.tf_without_key_creation main.tf
 
-ln -s service_account-$SACC-key.json  gcloud-vault-test1.json
+ln -s service_account-$SACC-key.json gcloud-vault-test1.json
 cat terraform.tfvars.example|egrep -v 'key_ring|crypto_key|keyring_location' | sed  "s/<PROJECT_ID>/$PROJID/g ; s/<ACCOUNT_FILE_PATH>/\.\/gcloud-vault-test1.json/g" > terraform.tfvars
 echo 'key_ring = "test"' >> terraform.tfvars
 echo  'crypto_key = "vault-test1"' >> terraform.tfvars
@@ -110,7 +110,7 @@ sudo systemctl status vault
 sudo VAULT_ADDR=127.0.0.1:8200 vault status
 ```
 
-12.  Explorer the Vault configuration file
+12.  Explore the Vault configuration file on the compute node
 ```shell
 cat /test/vault/config.hcla
 ```
@@ -124,7 +124,7 @@ gcloud kms keys update vault-test1 \
 --next-rotation-time 1d
 ```
 
-14. Cleanup may be performed step by step or in one go by simply executing the shell snip (https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/cleanall.sh)
+14. Cleanup may be performed step by step or in one go by simply executing the shell snip [cleanall.sh](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/cleanall.sh).
 ```shell
 terraform destroy -auto-approve
 
