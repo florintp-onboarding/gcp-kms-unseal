@@ -17,4 +17,3 @@ with Diagram("Main Diagram", show=True):
 
         kms1 >> os1
         os1 - vault1
-
