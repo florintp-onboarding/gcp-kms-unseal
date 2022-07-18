@@ -12,7 +12,8 @@ KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and 
 Those 2 variables must be loaded into environment prior to continue this workout example.
 In this case, a sourced file, variables-kms-unseal.source, with the correct values provided in the upper directory hierarchy.
 
-* Enable KMS API for project number. PROJNAME=$(gcloud projects describe $PROJID  --format json|jq -c '.projectNumber')  && eval PROJNAME=$PROJNAME
+* Enable KMS API for project number.
+* For example, PROJNAME=$(gcloud projects describe $PROJID  --format json|jq -c '.projectNumber')  && eval PROJNAME=$PROJNAME
 gcloud services enable cloudkms.googleapis.com
 
  
