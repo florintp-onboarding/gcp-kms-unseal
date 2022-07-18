@@ -4,10 +4,10 @@ These assets are provided to perform the tasks described in the [Auto-unseal wit
 KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and adapted for a workout example.
 
 # Prerequisites:
-* Install Terraform (https://www.terraform.io/downloads).
-* Install Vault client (https://www.vaultproject.io/downloads) - it is a nice to have option for testing access of vault server from local system.
-* Install the gcloud CLI and configure (https://cloud.google.com/sdk/docs/install) and enable Cloud Key Management Service [KMS] API (https://console.developers.google.com/apis/api/cloudkms.googleapis.com/overview?project=<PROJECTID>)
-* Install gh (https://cli.github.com/manual/installation).
+* Install [Terraform](https://www.terraform.io/downloads).
+* Install [Vault client](https://www.vaultproject.io/downloads) -  enables the option to test access of vault server from local system.
+* Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install), configure and enable Cloud Key Management Service [KMS](https://console.developers.google.com/apis/api/cloudkms.googleapis.com/overview?project=<PROJECTID>) API.
+* Install [gh](https://cli.github.com/manual/installation).
 * At least 2 variables must be present into environment in order to make the procedure valid: PROJID and SACC.
 Those 2 variables must be loaded into environment prior to continue this workout example.
 In this case, a sourced file, variables-kms-unseal.source, with the correct values provided in the upper directory hierarchy.
@@ -16,7 +16,7 @@ In this case, a sourced file, variables-kms-unseal.source, with the correct valu
 gcloud services enable cloudkms.googleapis.com
 
  
-For all commands in one go you may simply execute the shell snip (https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/create_and_unseal_vault.sh)
+For all commands execute the shell snip (https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/create_and_unseal_vault.sh) having as default the creation of the KMS keyring and unseal key.
 
 1. Set this location as your working directory
 ```shell
@@ -84,7 +84,7 @@ echo  'crypto_key = "vault-test1"' >> terraform.tfvars
 echo  'keyring_location = "global"' >> terraform.tfvars
 ```
 
-9. Terraform prepare and steps
+9. Terraform preparation and steps
 ```shell
 terraform init
 terraform plan
