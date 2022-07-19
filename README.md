@@ -129,7 +129,7 @@ echo  'keyring_location = "global"' >> terraform.tfvars
 ```shell
 terraform init
 ```
-* plan, to see what resources will be create
+* plan, to see what resources will be created
 ```shell
 terraform plan
 ```
@@ -137,7 +137,7 @@ terraform plan
 ```shell
 terraform apply -auto-approve
 ```
-* How to connect?
+* observe the information output after execution of the terraform plan
 ```shell
 terraform output
 ```
@@ -164,7 +164,7 @@ sudo VAULT_ADDR=127.0.0.1:8200 vault status
 cat /test/vault/config.hcla
 ```
 
-13. (On a different terminal window) Rotate key and see that the vault is still able to unseal. A manual rotation of the key may be executed from Google Cloud Console:
+13. (On a different terminal window) Rotate key and see that the vault is still able to unseal. A manual rotation of the key may be executed from GGP Console:
 ```shell
 gcloud kms keys update vault-test1 \
 --location global \
