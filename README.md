@@ -1,21 +1,52 @@
 ![](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/d731afa81d497ca86640250406ce04b09fc9c342/diagram/main_diagram.png)
 
+----
+
+**Please note**: We take Vault's security and our users' trust very seriously. If you believe you have found a security issue in Vault, _please responsibly disclose_ by contacting us at [security@hashicorp.com](mailto:security@hashicorp.com).
+
+
+----
+# Vault
+-	Website: https://www.vaultproject.io
+-	Announcement list: [Google Groups](https://groups.google.com/group/hashicorp-announce)
+-	Discussion forum: [Discuss](https://discuss.hashicorp.com/c/vault)
+- Documentation: [https://www.vaultproject.io/docs/](https://www.vaultproject.io/docs/)
+- Tutorials: [HashiCorp's Learn Platform](https://learn.hashicorp.com/vault)
+- Certification Exam: [Vault Associate](https://www.hashicorp.com/certification/#hashicorp-certified-vault-associate)
+
+<img width="300" alt="Vault Logo" src="https://github.com/hashicorp/vault/blob/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png">
+
+# Terraform
+- Website: https://www.terraform.io
+- Forums: [HashiCorp Discuss](https://discuss.hashicorp.com/c/terraform-core)
+- Documentation: [https://www.terraform.io/docs/](https://www.terraform.io/docs/)
+- Tutorials: [HashiCorp's Learn Platform](https://learn.hashicorp.com/terraform)
+- Certification Exam: [HashiCorp Certified: Terraform Associate](https://www.hashicorp.com/certification/#hashicorp-certified-terraform-associate)
+
+<img alt="Terraform" src="https://www.datocms-assets.com/2885/1629941242-logo-terraform-main.svg" width="400px">
+
+----
+Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
+
+----
+
 # Vault Auto-unseal using GCP Cloud KMS
 
 These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
 KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and adapted for a workout example.
 
+
 # Prerequisites:
-* Install [Terraform](https://www.terraform.io/downloads).
-* Install [Vault client](https://www.vaultproject.io/downloads) -  enables the option to test access of vault server from local system.
-* Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install), configure and enable Cloud Key Management Service [KMS](https://console.developers.google.com/apis/api/cloudkms.googleapis.com/overview?project=<PROJECTID>) API.
-* Install [gh](https://cli.github.com/manual/installation).
+- Install [Terraform](https://www.terraform.io/downloads).
+- Install [Vault client](https://www.vaultproject.io/downloads) -  enables the option to test access of vault server from local system.
+- Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install), configure and enable Cloud Key Management Service [KMS](https://console.developers.google.com/apis/api/cloudkms.googleapis.com/overview?project=<PROJECTID>) API.
+- Install [gh](https://cli.github.com/manual/installation).
 * At least 2 variables must be present into environment in order to make the procedure valid: PROJID and SACC.
 Those 2 variables must be loaded into environment prior to continue this workout example.
-In this case, a sourced file, variables-kms-unseal.source, with the correct values provided in the upper directory hierarchy.
+In this case, a sourced file, variables-kms-unseal.source, with the correct values mut be provided in the upper directory hierarchy.
 
-* Enable KMS API for project number.
-* For example, PROJNAME=$(gcloud projects describe $PROJID  --format json|jq -c '.projectNumber')  && eval PROJNAME=$PROJNAME
+- Enable KMS API for project number.
+- For example, PROJNAME=$(gcloud projects describe $PROJID  --format json|jq -c '.projectNumber')  && eval PROJNAME=$PROJNAME
 gcloud services enable cloudkms.googleapis.com
 
  
@@ -102,7 +133,6 @@ terraform plan
 terraform apply -auto-approve
 ```
 * How to connect?
-Use terraform output.
 ```shell
 terraform output
 ```
