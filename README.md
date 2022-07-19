@@ -1,10 +1,14 @@
+# The scope of this repository is to provide the steps for deploying Vault with Auto-unseal using KMS in GCP 
+
+These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
+KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and adapted for a workout example.
+
+
 ![](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/d731afa81d497ca86640250406ce04b09fc9c342/diagram/main_diagram.png)
 
 ----
 
-**Please note**: We take Vault's security and our users' trust very seriously. If you believe you have found a security issue in Vault, _please responsibly disclose_ by contacting us at [security@hashicorp.com](mailto:security@hashicorp.com).
-
-
+# Which are the main tools used to accomplish this task?
 ----
 # Vault
 -	Website: https://www.vaultproject.io
@@ -16,6 +20,13 @@
 
 <img width="300" alt="Vault Logo" src="https://github.com/hashicorp/vault/blob/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png">
 
+----
+Vault is a tool for securely accessing secrets. A secret is anything that you want to tightly control access to, such as API keys, passwords, certificates, and more. Vault provides a unified interface to any secret, while providing tight access control and recording a detailed audit log.
+
+----
+**Please note**: We take Vault's security and our users' trust very seriously. If you believe you have found a security issue in Vault, _please responsibly disclose_ by contacting us at [security@hashicorp.com](mailto:security@hashicorp.com).
+
+----
 # Terraform
 - Website: https://www.terraform.io
 - Forums: [HashiCorp Discuss](https://discuss.hashicorp.com/c/terraform-core)
@@ -30,13 +41,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 ----
 
-# Vault Auto-unseal using GCP Cloud KMS
-
-These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
-KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and adapted for a workout example.
-
-
-# Prerequisites:
+# What is needed to follow this guide?
 - Install [Terraform](https://www.terraform.io/downloads).
 - Install [Vault client](https://www.vaultproject.io/downloads) -  enables the option to test access of vault server from local system.
 - Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install), configure and enable Cloud Key Management Service [KMS](https://console.developers.google.com/apis/api/cloudkms.googleapis.com/overview?project=<PROJECTID>) API.
@@ -49,7 +54,7 @@ In this case, a sourced file, variables-kms-unseal.source, with the correct valu
 - For example, PROJNAME=$(gcloud projects describe $PROJID  --format json|jq -c '.projectNumber')  && eval PROJNAME=$PROJNAME
 gcloud services enable cloudkms.googleapis.com
 
- 
+# Which are the steps?
 For all commands in one go, execute the shell snip [create_and_unseal_vault.sh](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/main/create_and_unseal_vault.sh) having as default the creation of the KMS keyring and unseal key.
 
 1. Set this location as your working directory
@@ -62,12 +67,12 @@ Complete the variables in ../variables-kms-unseal.source.
 PROJID - for project id
 SACC - for service account 
 
-3. Load the default variable
+3. Load the default variables
 ``` shell
 source ../variables-kms-unseal.source
 ```
 
-4. Create a serviceAccount and generate the JSON key. If the Project_ID=hc-6b43a5a31f54432b9a6159440bb then the link for creating the serviceAccount is at [IAM-Admin](https://console.cloud.google.com/iam-admin/serviceaccounts). [Enable IAM API](https://cloud.google.com/iam/docs/granting-changing-revoking-access?hl=en_US)
+4. Create a serviceAccount and generate the JSON key using the [IAM-Admin](https://console.cloud.google.com/iam-admin/serviceaccounts) and [Enable IAM API](https://cloud.google.com/iam/docs/granting-changing-revoking-access?hl=en_US)
 ```shell
 
 gcloud -q iam service-accounts create $SACC \
@@ -137,7 +142,7 @@ terraform apply -auto-approve
 terraform output
 ```
 
-10. [SSH into the compute instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
+10. [Connecting to the compute instance](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 ```shell
 eval  $(terraform output|egrep '^nodename|^zone'|sed "s/ //g")
 gcloud -q compute ssh  --zone=${zone} ${nodename} --project ${PROJID}
@@ -159,7 +164,7 @@ sudo VAULT_ADDR=127.0.0.1:8200 vault status
 cat /test/vault/config.hcla
 ```
 
-13. (On a differnt terminal window) Rotate key and see that the vault is still able to unseal. A manual rotation of the key may be executed from Google Cloud Console:
+13. (On a different terminal window) Rotate key and see that the vault is still able to unseal. A manual rotation of the key may be executed from Google Cloud Console:
 ```shell
 gcloud kms keys update vault-test1 \
 --location global \
