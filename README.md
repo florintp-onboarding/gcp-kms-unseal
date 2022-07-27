@@ -1,4 +1,4 @@
-[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/generate-root-tokens-using-unseal-keys/edit/main/LICENSE)
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/generate-root-tokens-using-unseal-keys/LICENSE)
 
 # The scope of this repository is to provide the steps for deploying Vault with Auto-unseal using KMS in GCP 
 
