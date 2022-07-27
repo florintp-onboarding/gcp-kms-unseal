@@ -1,3 +1,6 @@
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/square/certstrap/master/LICENSE)
+
+
 # The scope of this repository is to provide the steps for deploying Vault with Auto-unseal using KMS in GCP 
 
 These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
