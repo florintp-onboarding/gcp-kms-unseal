@@ -152,9 +152,9 @@ gcloud -q compute ssh  --zone=${zone} ${nodename} --project ${PROJID}
 
 11.  Check the Vault server status
 ```shell
-sudo VAULT_ADDR=127.0.0.1:8200 vault status
-sudo VAULT_ADDR=127.0.0.1:8200 vault operator init
-sudo VAULT_ADDR=127.0.0.1:8200 vault status
+sudo VAULT_ADDR=http://127.0.0.1:8200 vault status
+sudo VAULT_ADDR=http://127.0.0.1:8200 vault operator init
+sudo VAULT_ADDR=http://127.0.0.1:8200 vault status
 sudo systemctl stop vault
 sudo systemctl start vault
 sudo systemctl status vault
