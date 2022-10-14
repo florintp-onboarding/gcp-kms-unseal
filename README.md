@@ -5,7 +5,6 @@
 These assets are provided to perform the tasks described in the [Auto-unseal with Google Cloud
 KMS](https://learn.hashicorp.com/vault/operations/autounseal-gcp-kms) guide and adapted for a workout example.
 
-
 ![](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/d731afa81d497ca86640250406ce04b09fc9c342/diagram/main_diagram.png)
 
 ----
@@ -67,12 +66,13 @@ gh repo clone florintp-onboarding/gcp-kms-unseal
 2. Use the  GCP account information in the 'terraform-without-keyring.tfvars' and save it as 'terraform.tfvars'. This will change on creation of a new project!
 Complete the variables in ../variables-kms-unseal.source.
 PROJID - for project id
-SACC - for service account like 
+SACC - for service account like in
 
 ```shell
 export PROJID=<your_projectid>
 export SACC=<projectname-test>
 ```
+![](https://github.com/florintp-onboarding/gcp-kms-unseal/blob/cae5f5654d72e7cf47cff10df65d8cf2021d6241/diagram/GCP_Projid_details.jpg)
 
 
 3. Load the default variables
