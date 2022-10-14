@@ -67,7 +67,13 @@ gh repo clone florintp-onboarding/gcp-kms-unseal
 2. Use the  GCP account information in the 'terraform-without-keyring.tfvars' and save it as 'terraform.tfvars'. This will change on creation of a new project!
 Complete the variables in ../variables-kms-unseal.source.
 PROJID - for project id
-SACC - for service account 
+SACC - for service account like 
+
+```shell
+export PROJID=<your_projectid>
+export SACC=<projectname-test>
+```
+
 
 3. Load the default variables
 ``` shell
